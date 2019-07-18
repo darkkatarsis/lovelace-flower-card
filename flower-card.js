@@ -1,4 +1,4 @@
-import {FlowerData} from '/local/lovelace-flower-card/data/data.js';
+import {FlowerData} from '/community_plugin/lovelace-flower-card/data/data.js';
 customElements.whenDefined('card-tools').then(() => {
 class FlowerCard extends cardTools.LitElement {
 
@@ -29,8 +29,13 @@ class FlowerCard extends cardTools.LitElement {
     }
 
     .header {
-      padding-top: 8px;
       height: 72px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      grid-template-rows: auto auto;
+      align-items: center;
+      padding: 0 16px;
+      box-sizing: border-box;
     }
     .header > img {
       width: 88px;
@@ -44,14 +49,40 @@ class FlowerCard extends cardTools.LitElement {
     .header > #name {
       font-weight: bold;
       width: 100%;
-      margin-top: 16px;
       text-transform: capitalize;
       display: block;
+      grid-column: 2;
+      grid-row: 1;
+      align-self: flex-end;
+      padding-left: 8px;
     }
     .header > #species {
       text-transform: capitalize;
       color: #8c96a5;
       display: block;
+      grid-column: 2;
+      grid-row: 2;
+      align-self: flex-start;
+      padding-left: 8px;
+    }
+    .header > #image {
+        grid-column: 1;
+        grid-row: 1 / span 2;
+        display: inline-block;
+        background-size: cover;
+        height: 40px;
+        width: 40px;
+        min-width: 40px;
+        line-height: 40px;
+        margin-right: 8px;
+        position: relative;
+        text-align: center;
+        will-change: border-color;
+        animation: 0.25s ease-out 0s 1 normal none running fade-in;
+        background-position: center center;
+        background-repeat: no-repeat;
+        border-radius: 100%;
+        transition: border-color 0.25s ease-out 0s;
     }
     .meter {
       height: 8px;
@@ -126,7 +157,7 @@ class FlowerCard extends cardTools.LitElement {
     <div class="header"
     @click="${() => cardTools.moreInfo(this.stateObj.entity_id)}"
     >
-    <img src="/local/lovelace-flower-card/data/Images/${this.config.species}.jpg">
+    <span id="image" style="background-image: url(/community_plugin/lovelace-flower-card/data/images/${this.config.species}.jpg)"></span>
     <span id="name"> ${this.stateObj.attributes.friendly_name} - ${Flower[1]}</span>
     <span id="species"> ${Flower[0]} </span>
     </div>
