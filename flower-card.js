@@ -100,12 +100,13 @@ class FlowerCard extends cardTools.LitElement {
       height: 100%;
     }
     .meter > .good {
-      background-color: rgba(43,194,83,1);
+      background-color: #b58e31;
     }
     .meter > .bad {
-      background-color: rgba(240,163,163);
+      background-color: #2980b9;
     }
     .divider {
+      display: none;
       height: 1px;
       background-color: #727272;
       opacity: 0.25;
