@@ -11,9 +11,6 @@ class FlowerCard extends cardTools.LitElement {
 
   static get styles() {
     return cardTools.LitCSS`
-    ha-card {
-      margin-top: 32px;
-    }
     .attributes {
       white-space: nowrap;
       padding: 8px;
