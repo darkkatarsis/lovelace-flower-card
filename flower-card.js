@@ -1,4 +1,4 @@
-import {FlowerData} from '/community_plugin/lovelace-flower-card/data/data.js';
+import {FlowerData} from '/www/assets/plants/data.js';
 customElements.whenDefined('card-tools').then(() => {
 class FlowerCard extends cardTools.LitElement {
 
@@ -189,7 +189,7 @@ class FlowerCard extends cardTools.LitElement {
     <div class="header"
     @click="${() => cardTools.moreInfo(this.stateObj.entity_id)}"
     >
-    <span id="image" style="background-image: url(/community_plugin/lovelace-flower-card/data/images/${img}.jpg)"></span>
+    <span id="image" style="background-image: url(/www/assets/plants/images/${img}.jpg)"></span>
     <span id="name">${Flower[1]} - ${this.stateObj.attributes.friendly_name}</span>
     <span id="species"> ${Flower[0]} </span>
     </div>
