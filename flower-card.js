@@ -195,12 +195,12 @@ class FlowerCard extends cardTools.LitElement {
     </div>
     <div class="divider"></div>
     <div class="attributes">
-    <div class="type temperature">${attribute('mdi:thermometer', this.stateObj.attributes.temperature, Flower[4], Flower[5])}</div>
-    <div class="type brightness">${attribute('mdi:white-balance-sunny', this.stateObj.attributes.brightness, Flower[2], Flower[3])}</div>
+    <div class="type temperature">${attribute('mdi:thermometer', this.stateObj.attributes.temperature + ' °', Flower[4], Flower[5])}</div>
+    <div class="type brightness">${attribute('mdi:white-balance-sunny', this.stateObj.attributes.brightness + ' lx', Flower[2], Flower[3])}</div>
     </div>
     <div class="attributes">
-    <div class="type moisture">${attribute('mdi:water-percent', this.stateObj.attributes.moisture, Flower[6], Flower[7])}</div>
-    <div class="type conductivity">${attribute('mdi:leaf', this.stateObj.attributes.conductivity, Flower[8], Flower[9])}</div>
+    <div class="type moisture">${attribute('mdi:water-percent', this.stateObj.attributes.moisture + ' %', Flower[6], Flower[7])}</div>
+    <div class="type conductivity">${attribute('mdi:leaf', this.stateObj.attributes.conductivity + ' %', Flower[8], Flower[9])}</div>
     </div>
 
     </ha-card>
