@@ -35,7 +35,7 @@ class FlowerCard extends cardTools.LitElement {
       content: attr(aria-label);
       left: 50%;
       top: -5px;
-      font-size: 12px;
+      font-size: 11px;
       transform: translate(-50%, -100%);
       white-space: nowrap;
       background: #222;
