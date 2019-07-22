@@ -156,7 +156,7 @@ class FlowerCard extends cardTools.LitElement {
     if(!this.stateObj)
       return cardTools.LitHtml``;
 
-    const attribute = (icon, val, min, max) => {
+    const attribute = (icon, val, unit, min, max) => {
       const pct = 100*Math.max(0, Math.min(1, (val-min)/(max-min)));
       return cardTools.LitHtml`
         <div class="attribute">
@@ -164,19 +164,19 @@ class FlowerCard extends cardTools.LitElement {
           <div class="meter red">
             <span
             class="bar ${val < min || val > max ? 'bad' : 'good'}"
-            style="width: 100%;" aria-label="${val < min || val > min ? val : ''}"
+            style="width: 100%;" aria-label="${val < min || val > min ? val unit : ''}"
             ></span>
           </div>
           <div class="meter green">
             <span
             class="bar ${val > max ? 'bad' : 'good'}"
-            style="width:${pct}%;" aria-label="${val < min || val > min ? val : ''}"
+            style="width:${pct}%;" aria-label="${val < min || val > min ? val unit : ''}"
             ></span>
           </div>
           <div class="meter red">
             <span
             class="bar bad"
-            style="width:${val > max ? 100 : 0}%;" aria-label="${val < min || val > min ? val : ''}"
+            style="width:${val > max ? 100 : 0}%;" aria-label="${val < min || val > min ? val unit : ''}"
             ></span>
           </div>
         </div>
@@ -195,12 +195,12 @@ class FlowerCard extends cardTools.LitElement {
     </div>
     <div class="divider"></div>
     <div class="attributes">
-    <div class="type temperature">${attribute('mdi:thermometer', this.stateObj.attributes.temperature + ' °C', Flower[4], Flower[5])}</div>
-    <div class="type brightness">${attribute('mdi:white-balance-sunny', this.stateObj.attributes.brightness + ' lx', Flower[2], Flower[3])}</div>
+    <div class="type temperature">${attribute('mdi:thermometer', this.stateObj.attributes.temperature, ' °C', Flower[4], Flower[5])}</div>
+    <div class="type brightness">${attribute('mdi:white-balance-sunny', this.stateObj.attributes.brightness, ' lx', Flower[2], Flower[3])}</div>
     </div>
     <div class="attributes">
-    <div class="type moisture">${attribute('mdi:water-percent', this.stateObj.attributes.moisture + ' %', Flower[6], Flower[7])}</div>
-    <div class="type conductivity">${attribute('mdi:leaf', this.stateObj.attributes.conductivity + ' µS/cm', Flower[8], Flower[9])}</div>
+    <div class="type moisture">${attribute('mdi:water-percent', this.stateObj.attributes.moisture, ' %', Flower[6], Flower[7])}</div>
+    <div class="type conductivity">${attribute('mdi:leaf', this.stateObj.attributes.conductivity, ' µS/cm', Flower[8], Flower[9])}</div>
     </div>
 
     </ha-card>
