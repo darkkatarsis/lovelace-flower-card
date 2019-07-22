@@ -195,7 +195,7 @@ class FlowerCard extends cardTools.LitElement {
     </div>
     <div class="divider"></div>
     <div class="attributes">
-    <div class="type temperature">${attribute('mdi:thermometer', this.stateObj.attributes.temperature + ' °', Flower[4], Flower[5])}</div>
+    <div class="type temperature">${attribute('mdi:thermometer', this.stateObj.attributes.temperature + ' °C', Flower[4], Flower[5])}</div>
     <div class="type brightness">${attribute('mdi:white-balance-sunny', this.stateObj.attributes.brightness + ' lx', Flower[2], Flower[3])}</div>
     </div>
     <div class="attributes">
