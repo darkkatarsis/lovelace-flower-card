@@ -1,4 +1,4 @@
-import {FlowerData} from /local/custom/lovelace-flower-card/data/data.js';
+import {FlowerData} from '/local/custom/lovelace-flower-card/data/data.js';
 customElements.whenDefined('card-tools').then(() => {
 class FlowerCard extends cardTools.LitElement {
 
