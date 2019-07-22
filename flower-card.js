@@ -115,6 +115,7 @@ class FlowerCard extends cardTools.LitElement {
       height: 6px;
       background-color: #f1f1f1;
       display: inline-grid;
+      border-radius: 2px;
     }
     .meter.red {
       background-color: #444445;
