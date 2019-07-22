@@ -12,27 +12,66 @@ class FlowerCard extends cardTools.LitElement {
   static get styles() {
     return cardTools.LitCSS`
     .attributes {
-      white-space: nowrap;
-      padding: 8px;
+        white-space: nowrap;
+        padding: 8px;
     }
     .attribute ha-icon {
-      float: left;
-      margin-right: 4px;
+        float: left;
+        margin-right: 4px;
+        width: 24px;
+        height: 24px;
     }
-    .attribute {
-      display: inline-block;
-      width: 50%;
-      white-space: normal;
+    .bar[aria-label] {
+      position: relative;
     }
-
+    .bar[aria-label]:after {
+      position: absolute;
+      display: none;
+      top: 100%;
+      animation: showTooltip 0.2s;
+      z-index: 100;
+    }
+    .bar[aria-label]:after {
+      content: attr(aria-label);
+      left: 50%;
+      top: -5px;
+      font-size: 12px;
+      transform: translate(-50%, -100%);
+      white-space: nowrap;
+      background: #222;
+      padding: 3px 6px;
+      border-radius: 5px;
+    }
+    .bar[aria-label]:hover:after {
+      display: block;
+    }
+    @keyframes showTooltip {
+      from {
+        opacity: 0;
+      }
+    }
+    .brightness ha-icon,
+    .conductivity ha-icon {
+        width: 20px;
+        margin-right: 8px
+    }
+    .temperature ha-icon {
+        width: 22px;
+        margin-right: 6px
+    }
+    .attributes .type {
+        display: inline-block;
+        width: 50%;
+        white-space: normal;
+    }
     .header {
-      height: 72px;
-      display: grid;
-      grid-template-columns: auto 1fr;
-      grid-template-rows: auto auto;
-      align-items: center;
-      padding: 0 16px;
-      box-sizing: border-box;
+        height: 72px;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto auto;
+        align-items: center;
+        padding: 0 16px;
+        box-sizing: border-box;
     }
     .header > img {
       width: 88px;
@@ -44,7 +83,6 @@ class FlowerCard extends cardTools.LitElement {
       box-shadow: var( --ha-card-box-shadow, 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2) );
     }
     .header > #name {
-      font-weight: bold;
       width: 100%;
       text-transform: capitalize;
       display: block;
@@ -52,10 +90,11 @@ class FlowerCard extends cardTools.LitElement {
       grid-row: 1;
       align-self: flex-end;
       padding-left: 8px;
+      color: #ffffff;
     }
     .header > #species {
       text-transform: capitalize;
-      color: #8c96a5;
+      color: #b58e31;
       display: block;
       grid-column: 2;
       grid-row: 2;
@@ -82,16 +121,17 @@ class FlowerCard extends cardTools.LitElement {
         transition: border-color 0.25s ease-out 0s;
     }
     .meter {
-      height: 8px;
+      height: 6px;
       background-color: #f1f1f1;
       border-radius: 2px;
       display: inline-grid;
-      overflow: hidden;
     }
     .meter.red {
+      background-color: #444445;
       width: 10%;
     }
     .meter.green {
+      background-color: #444445;
       width: 50%;
     }
     .meter > span {
@@ -100,10 +140,10 @@ class FlowerCard extends cardTools.LitElement {
       height: 100%;
     }
     .meter > .good {
-      background-color: #b58e31;
+      background-color: #dedede;
     }
     .meter > .bad {
-      background-color: #2980b9;
+      background-color: #dedede;
     }
     .divider {
       display: none;
@@ -119,6 +159,8 @@ class FlowerCard extends cardTools.LitElement {
   render() {
     const species = this.config.species;
     const Flower = FlowerData[species];
+    const img_nospaces = species.replace(/\s/g, '');
+    const img = img_nospaces.replace(/'/g, '');
     if(!this.stateObj)
       return cardTools.LitHtml``;
 
@@ -129,20 +171,20 @@ class FlowerCard extends cardTools.LitElement {
           <ha-icon .icon="${icon}"></ha-icon>
           <div class="meter red">
             <span
-            class="${val < min || val > max ? 'bad' : 'good'}"
-            style="width: 100%;"
+            class="bar ${val < min || val > max ? 'bad' : 'good'}"
+            style="width: 100%;" aria-label="${val < min || val > min ? val : ''}"
             ></span>
           </div>
           <div class="meter green">
             <span
-            class="${val > max ? 'bad' : 'good'}"
-            style="width:${pct}%;"
+            class="bar ${val > max ? 'bad' : 'good'}"
+            style="width:${pct}%;" aria-label="${val < min || val > min ? val : ''}"
             ></span>
           </div>
           <div class="meter red">
             <span
-            class="bad"
-            style="width:${val > max ? 100 : 0}%;"
+            class="bar bad"
+            style="width:${val > max ? 100 : 0}%;" aria-label="${val < min || val > min ? val : ''}"
             ></span>
           </div>
         </div>
@@ -155,19 +197,18 @@ class FlowerCard extends cardTools.LitElement {
     <div class="header"
     @click="${() => cardTools.moreInfo(this.stateObj.entity_id)}"
     >
-    <span id="image" style="background-image: url(/community_plugin/lovelace-flower-card/data/images/${this.config.species}.jpg)"></span>
-    <span id="name"> ${this.stateObj.attributes.friendly_name} - ${Flower[1]}</span>
+    <span id="image" style="background-image: url(/community_plugin/lovelace-flower-card/data/images/${img}.jpg)"></span>
+    <span id="name">${Flower[1]} - ${this.stateObj.attributes.friendly_name}</span>
     <span id="species"> ${Flower[0]} </span>
     </div>
     <div class="divider"></div>
-
     <div class="attributes">
-    ${attribute('mdi:thermometer', this.stateObj.attributes.temperature, Flower[4], Flower[5])}
-    ${attribute('mdi:white-balance-sunny', this.stateObj.attributes.brightness, Flower[2], Flower[3])}
+    <div class="type temperature">${attribute('mdi:thermometer', this.stateObj.attributes.temperature, Flower[4], Flower[5])}</div>
+    <div class="type brightness">${attribute('mdi:white-balance-sunny', this.stateObj.attributes.brightness, Flower[2], Flower[3])}</div>
     </div>
     <div class="attributes">
-    ${attribute('mdi:water-percent', this.stateObj.attributes.moisture, Flower[6], Flower[7])}
-    ${attribute('mdi:leaf', this.stateObj.attributes.conductivity, Flower[8], Flower[9])}
+    <div class="type moisture">${attribute('mdi:water-percent', this.stateObj.attributes.moisture, Flower[6], Flower[7])}</div>
+    <div class="type conductivity">${attribute('mdi:leaf', this.stateObj.attributes.conductivity, Flower[8], Flower[9])}</div>
     </div>
 
     </ha-card>
