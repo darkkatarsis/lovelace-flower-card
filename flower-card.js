@@ -73,15 +73,6 @@ class FlowerCard extends cardTools.LitElement {
         padding: 0 16px;
         box-sizing: border-box;
     }
-    .header > img {
-      width: 88px;
-      border-radius: var(--ha-card-border-radius, 2px);
-      margin-left: 16px;
-      margin-right: 16px;
-      margin-top: -32px;
-      float: left;
-      box-shadow: var( --ha-card-box-shadow, 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2) );
-    }
     .header > #name {
       width: 100%;
       text-transform: capitalize;
@@ -123,7 +114,6 @@ class FlowerCard extends cardTools.LitElement {
     .meter {
       height: 6px;
       background-color: #f1f1f1;
-      border-radius: 2px;
       display: inline-grid;
     }
     .meter.red {
@@ -138,6 +128,7 @@ class FlowerCard extends cardTools.LitElement {
       grid-row: 1;
       grid-column: 1;
       height: 100%;
+      border-radius: 2px;
     }
     .meter > .good {
       background-color: #dedede;
