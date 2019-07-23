@@ -151,7 +151,7 @@ class FlowerCard extends cardTools.LitElement {
   render() {
     const species = this.config.species;
     const Flower = FlowerData[species];
-    const img_nospaces = species.replace(/\s/g, '');
+    const img_nospaces = species.replace(/\s/g, '_');
     const img = img_nospaces.replace(/'/g, '');
     if(!this.stateObj)
       return cardTools.LitHtml``;
@@ -190,7 +190,7 @@ class FlowerCard extends cardTools.LitElement {
     @click="${() => cardTools.moreInfo(this.stateObj.entity_id)}"
     >
     <span id="image" style="background-image: url(/local/custom/lovelace-flower-card/data/images/${img}.jpg)"></span>
-    <span id="name">${Flower[1]} - ${this.stateObj.attributes.friendly_name}</span>
+    <span id="name">${this.stateObj.attributes.friendly_name}</span>
     <span id="species"> ${Flower[0]} </span>
     </div>
     <div class="divider"></div>
