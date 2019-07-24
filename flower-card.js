@@ -11,12 +11,9 @@ class FlowerCard extends cardTools.LitElement {
 
   static get styles() {
     return cardTools.LitCSS`
-    ha-card {
-        padding: 16px;
-    }
     .attributes {
         white-space: nowrap;
-        padding: 8px 0;
+        padding: 8px;
     }
     .attribute ha-icon {
         float: left;
@@ -68,11 +65,12 @@ class FlowerCard extends cardTools.LitElement {
         white-space: normal;
     }
     .header {
+        height: 72px;
         display: grid;
         grid-template-columns: auto 1fr;
         grid-template-rows: auto auto;
         align-items: center;
-        padding: 10px 5px 20px;
+        padding: 0 16px;
         box-sizing: border-box;
     }
     .header > #name {
