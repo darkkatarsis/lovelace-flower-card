@@ -38,7 +38,7 @@ class FlowerCard extends cardTools.LitElement {
       font-size: 11px;
       transform: translate(-50%, -100%);
       white-space: nowrap;
-      background: #222;
+      background: var(--paper-card-background-color);
       padding: 3px 6px;
       border-radius: 5px;
     }
@@ -81,11 +81,11 @@ class FlowerCard extends cardTools.LitElement {
       grid-row: 1;
       align-self: flex-end;
       padding-left: 8px;
-      color: #ffffff;
+      color: var(--primary-text-color);
     }
     .header > #species {
       text-transform: capitalize;
-      color: #b58e31;
+      color: var(--secondary-text-color);
       display: block;
       grid-column: 2;
       grid-row: 2;
@@ -113,16 +113,16 @@ class FlowerCard extends cardTools.LitElement {
     }
     .meter {
       height: 6px;
-      background-color: #f1f1f1;
+      background-color: var(--paper-toggle-button-unchecked-bar-color);
       display: inline-grid;
       border-radius: 2px;
     }
     .meter.red {
-      background-color: #444445;
+      background-color: var(--paper-toggle-button-unchecked-bar-color);
       width: 10%;
     }
     .meter.green {
-      background-color: #444445;
+      background-color: var(--paper-toggle-button-unchecked-bar-color);
       width: 50%;
     }
     .meter > span {
@@ -132,15 +132,15 @@ class FlowerCard extends cardTools.LitElement {
       border-radius: 2px;
     }
     .meter > .good {
-      background-color: #dedede;
+      background-color: var(--paper-toggle-button-unchecked-button-color);
     }
     .meter > .bad {
-      background-color: #dedede;
+      background-color: var(--paper-toggle-button-unchecked-button-color);
     }
     .divider {
       display: none;
       height: 1px;
-      background-color: #727272;
+      background-color: var(--divider-color);
       opacity: 0.25;
       margin-left: 8px;
       margin-right: 8px;
