@@ -12,7 +12,7 @@ customElements.whenDefined('card-tools').then(() => {
             return cardTools.LitCSS `
         .attributes {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 10px 1fr;
             grid-template-rows: 1fr;
             padding: 8px 0;
         }
