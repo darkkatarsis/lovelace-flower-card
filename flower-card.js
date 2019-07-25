@@ -14,7 +14,7 @@ customElements.whenDefined('card-tools').then(() => {
             display: grid;
             grid-template-columns: 1fr 10px 1fr;
             grid-template-rows: 1fr;
-            padding: 8px 0 0;
+            padding: 16px 0px 0px;
             transform: translateX(-5px);
         }
         .attributes .type {
@@ -68,7 +68,7 @@ customElements.whenDefined('card-tools').then(() => {
             font-size: 11px;
             transform: translate(-50%, -100%);
             white-space: nowrap;
-            background: var(--paper-card-background-color);
+            background: var(--primary-background-color);
             padding: 3px 6px;
             border-radius: 5px;
         }
@@ -86,7 +86,7 @@ customElements.whenDefined('card-tools').then(() => {
             grid-template-columns: auto 1fr;
             grid-template-rows: auto auto;
             align-items: center;
-            padding-bottom: 16px;
+            padding-bottom: 8px;
         }
         .header > #name {
             width: 100%;
