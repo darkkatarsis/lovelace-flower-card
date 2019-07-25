@@ -14,7 +14,7 @@ customElements.whenDefined('card-tools').then(() => {
             display: grid;
             grid-template-columns: 1fr 10px 1fr;
             grid-template-rows: 1fr;
-            padding: 8px 0;
+            padding: 8px 0 0;
             transform: translateX(-5px);
         }
         .attributes .type {
