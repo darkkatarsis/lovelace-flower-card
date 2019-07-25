@@ -14,6 +14,7 @@ customElements.whenDefined('card-tools').then(() => {
             display: grid;
             grid-template-columns: 1fr 10px 1fr;
             grid-template-rows: 1fr;
+            gap: 10px;
             padding: 16px 0px 0px;
             transform: translateX(-5px);
         }
@@ -48,7 +49,6 @@ customElements.whenDefined('card-tools').then(() => {
         }
         .temperature ha-icon {
             width: 22px;
-            margin-right: 6px
         }
         /* tooltip */
         .bar[aria-label] {
