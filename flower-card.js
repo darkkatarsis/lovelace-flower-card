@@ -113,16 +113,16 @@ class FlowerCard extends cardTools.LitElement {
     }
     .meter {
       height: 6px;
-      background-color: var(--paper-toggle-button-unchecked-bar-color);
+      background-color: var(--paper-plant-container-color);
       display: inline-grid;
       border-radius: 2px;
     }
     .meter.red {
-      background-color: var(--paper-toggle-button-unchecked-bar-color);
+      background-color: var(--paper-plant-container-color);
       width: 10%;
     }
     .meter.green {
-      background-color: var(--paper-toggle-button-unchecked-bar-color);
+      background-color: var(--paper-plant-container-color);
       width: 50%;
     }
     .meter > span {
@@ -132,10 +132,10 @@ class FlowerCard extends cardTools.LitElement {
       border-radius: 2px;
     }
     .meter > .good {
-      background-color: var(--paper-toggle-button-unchecked-button-color);
+      background-color: var(--paper-plant-inner-color);
     }
     .meter > .bad {
-      background-color: var(--paper-toggle-button-unchecked-button-color);
+      background-color: var(--paper-plant-inner-color);
     }
     .divider {
       display: none;
