@@ -15,6 +15,7 @@ customElements.whenDefined('card-tools').then(() => {
             grid-template-columns: 1fr 10px 1fr;
             grid-template-rows: 1fr;
             padding: 8px 0;
+            transform: translateX(-5px);
         }
         .attributes .type {
             display: inline-block;
@@ -85,8 +86,7 @@ customElements.whenDefined('card-tools').then(() => {
             grid-template-columns: auto 1fr;
             grid-template-rows: auto auto;
             align-items: center;
-            padding: 8px 8px 16px;
-            box-sizing: border-box;
+            padding-bottom: 16px;
         }
         .header > #name {
             width: 100%;
