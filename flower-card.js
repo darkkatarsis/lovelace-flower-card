@@ -10,6 +10,9 @@ customElements.whenDefined('card-tools').then(() => {
 
         static get styles() {
             return cardTools.LitCSS `
+        ha-card {
+            padding: 16px;
+        }
         .attributes {
             display: grid;
             grid-template-columns: 1fr 10px 1fr;
