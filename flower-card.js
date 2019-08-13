@@ -161,19 +161,19 @@ customElements.whenDefined('card-tools').then(() => {
             <div class="meter red">
                 <span
                 class="bar ${val < min || val > max ? 'bad' : 'good'}"
-                style="width: 100%;" aria-label="${val < min || val > min ? val + unit : ''}"
+                style="width: 100%;" aria-label="${val <= min || val >= min ? val + unit : ''}"
                 ></span>
             </div>
             <div class="meter green">
                 <span
                 class="bar ${val > max ? 'bad' : 'good'}"
-                style="width:${pct}%;" aria-label="${val < min || val > min ? val + unit : ''}"
+                style="width:${pct}%;" aria-label="${val <= min || val >= min ? val + unit : ''}"
                 ></span>
             </div>
             <div class="meter red">
                 <span
                 class="bar bad"
-                style="width:${val > max ? 100 : 0}%;" aria-label="${val < min || val > min ? val + unit : ''}"
+                style="width:${val > max ? 100 : 0}%;" aria-label="${val <= min || val >= min ? val + unit : ''}"
                 ></span>
             </div>
             </div>
