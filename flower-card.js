@@ -181,8 +181,8 @@ customElements.whenDefined('card-tools').then(() => {
         const attribute = (icon, attr, val, unit, min, max) => {
             const pct = 100 * Math.max(0, Math.min(1, (val - min) / (max - min)));
             return cardTools.LitHtml `
-            <div class="attribute" aria-label="${val + " "+ unit + " | " + min + " ~ " + max + " " + unit}" @click="${() => cardTools.moreInfo(this.stateObj.attributes.sensors[attr])}">
-            <ha-icon .icon="${icon}"></ha-icon>
+            <div class="attribute" aria-label="${val + " "+ unit + " | " + min + " ~ " + max + " " + unit}">
+            <ha-icon .icon="${icon}" @click="${() => cardTools.moreInfo(this.stateObj.attributes.sensors[attr])}"></ha-icon>
             <div class="meter red">
                 <span
                 class="bar ${val < min || val > max ? 'bad' : 'good'}"
