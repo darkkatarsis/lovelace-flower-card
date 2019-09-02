@@ -49,6 +49,8 @@ customElements.whenDefined('card-tools').then(() => {
         /* icons */
         .attribute .icon {
             text-align: center;
+            height: 24px;
+            width: 100%;
         }
         .attribute .icon:hover {
             cursor: pointer;
