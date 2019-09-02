@@ -47,11 +47,11 @@ customElements.whenDefined('card-tools').then(() => {
             align-items: center;
         }
         /* icons */
-        .attribute .inner ha-icon {
+        .attribute ha-icon {
             width: 24px;
             height: 24px;
         }
-        .attribute .inner ha-icon:hover {
+        .attribute ha-icon:hover {
             cursor: pointer;
         }
         .brightness ha-icon,
@@ -156,21 +156,6 @@ customElements.whenDefined('card-tools').then(() => {
             border-radius: 2px;
             display: grid;
             height: 100%;
-        }
-        /* mobile */
-        @media screen and (max-width: 479px) {
-            .attributes {
-                grid-template-columns: 1fr;
-                grid-template-rows: auto auto;
-            }
-            .attributes .type:nth-child(1) {
-                grid-column: 1;
-                grid-row: 1;
-            }
-            .attributes .type:nth-child(2) {
-                grid-column: 1;
-                grid-row: 2;
-            }
         }
         `;
     }
