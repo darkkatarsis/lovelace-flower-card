@@ -36,39 +36,47 @@ customElements.whenDefined('card-tools').then(() => {
         }
         .attribute {
             display: grid;
-            grid-template-columns: 22px 10% auto 10%;
+            grid-template-columns: 30px 1fr;
+            grid-template-rows: 1fr;
+        }
+        .attribute .inner {
+            display: grid;
+            grid-template-columns: 10% auto 10%;
             grid-template-rows: 1fr;
             grid-gap: 5px;
             align-items: center;
         }
         /* icons */
-        .attribute ha-icon {
+        .attribute .icon {
+            text-align: center;
+        }
+        .attribute .icon:hover {
+            cursor: pointer;
+        }
+        .attribute .icon ha-icon {
             width: 24px;
             height: 24px;
         }
-        .attribute ha-icon:hover {
-            cursor: pointer;
-        }
-        .brightness ha-icon,
-        .conductivity ha-icon {
+        .brightness .icon ha-icon,
+        .conductivity .icon ha-icon {
             width: 20px;
             margin-right: 8px
         }
-        .temperature ha-icon {
+        .temperature .icon ha-icon {
             width: 22px;
         }
         /* tooltip */
-        .attribute[aria-label] {
+        .attribute .inner[aria-label] {
             position: relative;
         }
-        .attribute[aria-label]:after {
+        .attribute .inner[aria-label]:after {
             position: absolute;
             display: none;
             top: 100%;
             animation: showTooltip 0.2s;
             z-index: 100;
         }
-        .attribute[aria-label]:after {
+        .attribute .inner[aria-label]:after {
             content: attr(aria-label);
             left: 50%;
             top: 0px;
@@ -79,7 +87,7 @@ customElements.whenDefined('card-tools').then(() => {
             padding: 3px 6px;
             border-radius: 5px;
         }
-        .attribute[aria-label]:hover:after {
+        .attribute .inner[aria-label]:hover:after {
             display: block;
         }
         @keyframes showTooltip {
@@ -181,22 +189,26 @@ customElements.whenDefined('card-tools').then(() => {
         const attribute = (icon, attr, val, unit, min, max) => {
             const pct = 100 * Math.max(0, Math.min(1, (val - min) / (max - min)));
             return cardTools.LitHtml `
-            <div class="attribute" aria-label="${val + " "+ unit + " | " + min + " ~ " + max + " " + unit}">
-                <ha-icon .icon="${icon}" @click="${() => cardTools.moreInfo(this.stateObj.attributes.sensors[attr])}"></ha-icon>
-                <div class="meter red">
-                    <span
-                    class="bar ${val < min || val > max ? 'bad' : 'good'}"
-                    style="width: 100%;"></span>
+            <div class="attribute">
+                <div class="icon">
+                    <ha-icon .icon="${icon}" @click="${() => cardTools.moreInfo(this.stateObj.attributes.sensors[attr])}"></ha-icon>
                 </div>
-                <div class="meter green">
-                    <span
-                    class="bar ${val > max ? 'bad' : 'good'}"
-                    style="width:${pct}%;"></span>
-                </div>
-                <div class="meter red">
-                    <span
-                    class="bar bad"
-                    style="width:${val > max ? 100 : 0}%;"></span>
+                <div class="inner" aria-label="${val + " "+ unit + " | " + min + " ~ " + max + " " + unit}">
+                    <div class="meter red">
+                        <span
+                        class="bar ${val < min || val > max ? 'bad' : 'good'}"
+                        style="width: 100%;"></span>
+                    </div>
+                    <div class="meter green">
+                        <span
+                        class="bar ${val > max ? 'bad' : 'good'}"
+                        style="width:${pct}%;"></span>
+                    </div>
+                    <div class="meter red">
+                        <span
+                        class="bar bad"
+                        style="width:${val > max ? 100 : 0}%;"></span>
+                    </div>
                 </div>
             </div>
         `;
