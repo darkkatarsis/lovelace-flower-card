@@ -47,24 +47,19 @@ customElements.whenDefined('card-tools').then(() => {
             align-items: center;
         }
         /* icons */
-        .attribute .icon {
-            text-align: center;
-            height: 24px;
-            width: 100%;
-        }
-        .attribute .icon:hover {
-            cursor: pointer;
-        }
-        .attribute .icon ha-icon {
+        .attribute .inner ha-icon {
             width: 24px;
             height: 24px;
         }
-        .brightness .icon ha-icon,
-        .conductivity .icon ha-icon {
+        .attribute .inner ha-icon:hover {
+            cursor: pointer;
+        }
+        .brightness ha-icon,
+        .conductivity ha-icon {
             width: 20px;
             margin-right: 8px
         }
-        .temperature .icon ha-icon {
+        .temperature ha-icon {
             width: 22px;
         }
         /* tooltip */
@@ -192,9 +187,7 @@ customElements.whenDefined('card-tools').then(() => {
             const pct = 100 * Math.max(0, Math.min(1, (val - min) / (max - min)));
             return cardTools.LitHtml `
             <div class="attribute">
-                <div class="icon" @click="${() => cardTools.moreInfo(this.stateObj.attributes.sensors[attr])}">
-                    <ha-icon .icon="${icon}"></ha-icon>
-                </div>
+                <ha-icon .icon="${icon}" @click="${() => cardTools.moreInfo(this.stateObj.attributes.sensors[attr])}"></ha-icon>
                 <div class="inner" aria-label="${val + " "+ unit + " | " + min + " ~ " + max + " " + unit}">
                     <div class="meter red">
                         <span
