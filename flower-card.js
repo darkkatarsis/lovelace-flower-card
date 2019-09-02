@@ -37,8 +37,12 @@ customElements.whenDefined('card-tools').then(() => {
         .attribute {
             display: grid;
             grid-template-columns: 22px 10% auto 10%;
+            grid-template-rows: 1fr;
             grid-gap: 5px;
             align-items: center;
+        }
+        .attribute:hover {
+            cursor: pointer;
         }
         /* icons */
         .attribute ha-icon {
@@ -54,20 +58,20 @@ customElements.whenDefined('card-tools').then(() => {
             width: 22px;
         }
         /* tooltip */
-        .bar[aria-label] {
+        .attribute[aria-label] {
             position: relative;
         }
-        .bar[aria-label]:after {
+        .attribute[aria-label]:after {
             position: absolute;
             display: none;
             top: 100%;
             animation: showTooltip 0.2s;
             z-index: 100;
         }
-        .bar[aria-label]:after {
+        .attribute[aria-label]:after {
             content: attr(aria-label);
             left: 50%;
-            top: -5px;
+            top: 0px;
             font-size: 13px;
             transform: translate(-50%, -100%);
             white-space: nowrap;
@@ -75,7 +79,7 @@ customElements.whenDefined('card-tools').then(() => {
             padding: 3px 6px;
             border-radius: 5px;
         }
-        .bar[aria-label]:hover:after {
+        .attribute[aria-label]:hover:after {
             display: block;
         }
         @keyframes showTooltip {
@@ -100,6 +104,9 @@ customElements.whenDefined('card-tools').then(() => {
             align-self: flex-end;
             padding-left: 8px;
             color: var(--primary-text-color);
+        }
+        .header:hover {
+            cursor: pointer;
         }
         .header > #species {
             text-transform: capitalize;
@@ -131,6 +138,7 @@ customElements.whenDefined('card-tools').then(() => {
         }
         .meter {
             height: 6px;
+            display: grid;
             background-color: var(--paper-plant-container-color);
             display: inline-grid;
             border-radius: 2px;
@@ -141,6 +149,8 @@ customElements.whenDefined('card-tools').then(() => {
             grid-column: 1;
             height: 100%;
             border-radius: 2px;
+            display: grid;
+            height: 100%;
         }
         /* mobile */
         @media screen and (max-width: 479px) {
@@ -168,28 +178,25 @@ customElements.whenDefined('card-tools').then(() => {
         if (!this.stateObj)
             return cardTools.LitHtml ``;
 
-        const attribute = (icon, val, unit, min, max) => {
+        const attribute = (icon, attr, val, unit, min, max) => {
             const pct = 100 * Math.max(0, Math.min(1, (val - min) / (max - min)));
             return cardTools.LitHtml `
-            <div class="attribute">
+            <div class="attribute" aria-label="${val + " "+ unit + " | " + min + " ~ " + max + " " + unit}" @click="${() => cardTools.moreInfo(this.stateObj.attributes.sensors[attr])}">
             <ha-icon .icon="${icon}"></ha-icon>
             <div class="meter red">
                 <span
                 class="bar ${val < min || val > max ? 'bad' : 'good'}"
-                style="width: 100%;" aria-label="${val + " "+ unit + " | " + min + " ~ " + max + " " + unit}"
-                ></span>
+                style="width: 100%;"></span>
             </div>
             <div class="meter green">
                 <span
                 class="bar ${val > max ? 'bad' : 'good'}"
-                style="width:${pct}%;" aria-label="${val + " "+ unit + " | " + min + " ~ " + max + " " + unit}"
-                ></span>
+                style="width:${pct}%;"></span>
             </div>
             <div class="meter red">
                 <span
                 class="bar bad"
-                style="width:${val > max ? 100 : 0}%;" aria-label="${val + " "+ unit + " | " + min + " ~ " + max + " " + unit}"
-                ></span>
+                style="width:${val > max ? 100 : 0}%;"></span>
             </div>
             </div>
         `;
@@ -206,12 +213,12 @@ customElements.whenDefined('card-tools').then(() => {
         <span id="species"> ${Flower[0]} </span>
         </div>
         <div class="attributes">
-        <div class="type temperature">${attribute('mdi:thermometer', this.stateObj.attributes.temperature, ' °C', Flower[4], Flower[5])}</div>
-        <div class="type brightness">${attribute('mdi:white-balance-sunny', this.stateObj.attributes.brightness, ' lx', Flower[2], Flower[3])}</div>
+        <div class="type temperature">${attribute('mdi:thermometer', 'temperature', this.stateObj.attributes.temperature, ' °C', Flower[4], Flower[5])}</div>
+        <div class="type brightness">${attribute('mdi:white-balance-sunny', 'brightness', this.stateObj.attributes.brightness, ' lx', Flower[2], Flower[3])}</div>
         </div>
         <div class="attributes">
-        <div class="type moisture">${attribute('mdi:water-percent', this.stateObj.attributes.moisture, ' %', Flower[6], Flower[7])}</div>
-        <div class="type conductivity">${attribute('mdi:leaf', this.stateObj.attributes.conductivity, ' µS/cm', Flower[8], Flower[9])}</div>
+        <div class="type moisture">${attribute('mdi:water-percent', 'moisture', this.stateObj.attributes.moisture, ' %', Flower[6], Flower[7])}</div>
+        <div class="type conductivity">${attribute('mdi:leaf', 'conductivity', this.stateObj.attributes.conductivity, ' µS/cm', Flower[8], Flower[9])}</div>
         </div>
 
         </ha-card>
