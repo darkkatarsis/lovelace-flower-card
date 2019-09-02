@@ -41,13 +41,13 @@ customElements.whenDefined('card-tools').then(() => {
             grid-gap: 5px;
             align-items: center;
         }
-        .attribute:hover {
-            cursor: pointer;
-        }
         /* icons */
         .attribute ha-icon {
             width: 24px;
             height: 24px;
+        }
+        .attribute ha-icon:hover {
+            cursor: pointer;
         }
         .brightness ha-icon,
         .conductivity ha-icon {
