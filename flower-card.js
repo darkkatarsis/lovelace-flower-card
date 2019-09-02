@@ -68,7 +68,7 @@ customElements.whenDefined('card-tools').then(() => {
             content: attr(aria-label);
             left: 50%;
             top: -5px;
-            font-size: 11px;
+            font-size: 13px;
             transform: translate(-50%, -100%);
             white-space: nowrap;
             background: var(--primary-background-color);
@@ -142,6 +142,21 @@ customElements.whenDefined('card-tools').then(() => {
             height: 100%;
             border-radius: 2px;
         }
+        /* mobile */
+        @media screen and (max-width: 479px) {
+            .attributes {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto;
+            }
+            .attributes .type:nth-child(1) {
+                grid-column: 1;
+                grid-row: 1;
+            }
+            .attributes .type:nth-child(2) {
+                grid-column: 1;
+                grid-row: 2;
+            }
+        }
         `;
     }
 
@@ -161,19 +176,19 @@ customElements.whenDefined('card-tools').then(() => {
             <div class="meter red">
                 <span
                 class="bar ${val < min || val > max ? 'bad' : 'good'}"
-                style="width: 100%;" aria-label="${val <= min || val >= min ? val + unit : ''}"
+                style="width: 100%;" aria-label="${val + " "+ unit + " | " + min + " ~ " + max + " " + unit}"
                 ></span>
             </div>
             <div class="meter green">
                 <span
                 class="bar ${val > max ? 'bad' : 'good'}"
-                style="width:${pct}%;" aria-label="${val <= min || val >= min ? val + unit : ''}"
+                style="width:${pct}%;" aria-label="${val + " "+ unit + " | " + min + " ~ " + max + " " + unit}"
                 ></span>
             </div>
             <div class="meter red">
                 <span
                 class="bar bad"
-                style="width:${val > max ? 100 : 0}%;" aria-label="${val <= min || val >= min ? val + unit : ''}"
+                style="width:${val > max ? 100 : 0}%;" aria-label="${val + " "+ unit + " | " + min + " ~ " + max + " " + unit}"
                 ></span>
             </div>
             </div>
