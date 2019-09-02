@@ -182,22 +182,22 @@ customElements.whenDefined('card-tools').then(() => {
             const pct = 100 * Math.max(0, Math.min(1, (val - min) / (max - min)));
             return cardTools.LitHtml `
             <div class="attribute" aria-label="${val + " "+ unit + " | " + min + " ~ " + max + " " + unit}">
-            <ha-icon .icon="${icon}" @click="${() => cardTools.moreInfo(this.stateObj.attributes.sensors[attr])}"></ha-icon>
-            <div class="meter red">
-                <span
-                class="bar ${val < min || val > max ? 'bad' : 'good'}"
-                style="width: 100%;"></span>
-            </div>
-            <div class="meter green">
-                <span
-                class="bar ${val > max ? 'bad' : 'good'}"
-                style="width:${pct}%;"></span>
-            </div>
-            <div class="meter red">
-                <span
-                class="bar bad"
-                style="width:${val > max ? 100 : 0}%;"></span>
-            </div>
+                <ha-icon .icon="${icon}" @click="${() => cardTools.moreInfo(this.stateObj.attributes.sensors[attr])}"></ha-icon>
+                <div class="meter red">
+                    <span
+                    class="bar ${val < min || val > max ? 'bad' : 'good'}"
+                    style="width: 100%;"></span>
+                </div>
+                <div class="meter green">
+                    <span
+                    class="bar ${val > max ? 'bad' : 'good'}"
+                    style="width:${pct}%;"></span>
+                </div>
+                <div class="meter red">
+                    <span
+                    class="bar bad"
+                    style="width:${val > max ? 100 : 0}%;"></span>
+                </div>
             </div>
         `;
         // ${val} (${min}-${max})
