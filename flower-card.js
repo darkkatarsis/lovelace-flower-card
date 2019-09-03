@@ -51,7 +51,7 @@ customElements.whenDefined('card-tools').then(() => {
             width: 24px;
             height: 24px;
         }
-        .attribute ha-icon:hover {
+        .attribute .icon:hover {
             cursor: pointer;
         }
         .brightness ha-icon,
@@ -172,7 +172,9 @@ customElements.whenDefined('card-tools').then(() => {
             const pct = 100 * Math.max(0, Math.min(1, (val - min) / (max - min)));
             return cardTools.LitHtml `
             <div class="attribute">
-                <ha-icon .icon="${icon}" @click="${() => cardTools.moreInfo(this.stateObj.attributes.sensors[attr])}"></ha-icon>
+                <div class="icon" @click="${() => cardTools.moreInfo(this.stateObj.attributes.sensors[attr])}">
+                    <ha-icon .icon="${icon}"></ha-icon>
+                </div>
                 <div class="inner" aria-label="${val + " "+ unit + " | " + min + " ~ " + max + " " + unit}">
                     <div class="meter red">
                         <span
