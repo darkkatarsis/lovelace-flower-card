@@ -212,7 +212,7 @@ customElements.whenDefined('card-tools').then(() => {
         </div>
         <div class="attributes">
         <div class="type moisture">${attribute('mdi:water-percent', 'moisture', this.stateObj.attributes.moisture, ' %', Flower[6], Flower[7])}</div>
-        <div class="type conductivity">${attribute('mdi:leaf', 'conductivity', this.stateObj.attributes.conductivity, ' µS/cm', Flower[8], Flower[9])}</div>
+        <div class="type conductivity">${attribute('mdi:flash-circle', 'conductivity', this.stateObj.attributes.conductivity, ' µS/cm', Flower[8], Flower[9])}</div>
         </div>
 
         </ha-card>
